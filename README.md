@@ -83,7 +83,7 @@ Failure: `{"ok": False, "error": <code>, "message": <text>}` with one of these c
   show it), and you would then read the script's own name.
 - **Name, not path.** Two layers with the same name cannot be told apart: handle that case in your script.
 - **Speed:** a few seconds per call (about 3 to 4 s here), because the whole interface tree is walked.
-- **Windows only**, with PowerShell 5.1 or later. The script must be started with `stdin=DEVNULL` from Smode
+- **Requires PowerShell 5.1 or later.** The script must be started with `stdin=DEVNULL` from Smode
   (already done in `readSelection()`), otherwise `subprocess` fails with `OSError(9, 'The handle is invalid')`.
 - **Tested:** Smode 15.5 on Windows 11, English interface, one machine, Smode on the main display.
   Other interface languages, other UI scales and Smode on a secondary display are not verified.

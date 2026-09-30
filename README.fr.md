@@ -83,7 +83,7 @@ donc pas fiable de le lire dans l'interface ; retrouvez le layer par son nom et 
   pour l'afficher), et vous liriez alors le nom du script lui-même.
 - **Nom, pas chemin.** Deux layers de même nom ne peuvent pas être distingués : gérez ce cas dans votre script.
 - **Vitesse :** quelques secondes par appel (environ 3 à 4 s ici), car tout l'arbre de l'interface est parcouru.
-- **Windows uniquement**, avec PowerShell 5.1 ou plus récent. Le script doit être lancé avec `stdin=DEVNULL`
+- **Nécessite PowerShell 5.1 ou plus récent.** Le script doit être lancé avec `stdin=DEVNULL`
   depuis Smode (déjà fait dans `readSelection()`), sinon `subprocess` échoue avec
   `OSError(9, 'The handle is invalid')`.
 - **Testé :** Smode 15.5 sous Windows 11, interface en anglais, une seule machine, Smode sur l'écran
