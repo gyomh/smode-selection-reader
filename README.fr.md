@@ -1,8 +1,8 @@
-# Lire l'élément sélectionné dans Smode Compose (depuis un Script)
+# Lire l'élément sélectionné dans Smode (depuis un Script)
 
 *[English version](README.md)*
 
-Un petit outil qui permet à un **Script Smode Compose** de savoir quel élément est actuellement sélectionné dans
+Un petit outil qui permet à un **Script Smode** de savoir quel élément est actuellement sélectionné dans
 l'interface, pour que votre script agisse sur « ce qui est sélectionné » au lieu de demander à l'utilisateur de le
 glisser-déposer dans un paramètre.
 
@@ -86,7 +86,7 @@ donc pas fiable de le lire dans l'interface ; retrouvez le layer par son nom et 
 - **Windows uniquement**, avec PowerShell 5.1 ou plus récent. Le script doit être lancé avec `stdin=DEVNULL`
   depuis Smode (déjà fait dans `readSelection()`), sinon `subprocess` échoue avec
   `OSError(9, 'The handle is invalid')`.
-- **Testé :** Smode Compose 15.5 sous Windows 11, interface en anglais, une seule machine, Smode sur l'écran
+- **Testé :** Smode 15.5 sous Windows 11, interface en anglais, une seule machine, Smode sur l'écran
   principal. Les autres langues d'interface, les autres échelles d'affichage et Smode sur un écran secondaire ne
   sont pas vérifiés.
 - Le titre du Viewport (qui affiche aussi un nom d'élément) est volontairement ignoré ; la détection s'appuie sur

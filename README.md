@@ -1,8 +1,8 @@
-# Reading the selected element in Smode Compose (from a Script)
+# Reading the selected element in Smode (from a Script)
 
 *[Version française](README.fr.md)*
 
-A small helper that lets a **Smode Compose Script** find out which element is currently selected in the
+A small helper that lets a **Smode Script** find out which element is currently selected in the
 interface, so your script can act on "whatever is selected" instead of asking the user to drag and drop it
 into a parameter.
 
@@ -85,7 +85,7 @@ Failure: `{"ok": False, "error": <code>, "message": <text>}` with one of these c
 - **Speed:** a few seconds per call (about 3 to 4 s here), because the whole interface tree is walked.
 - **Windows only**, with PowerShell 5.1 or later. The script must be started with `stdin=DEVNULL` from Smode
   (already done in `readSelection()`), otherwise `subprocess` fails with `OSError(9, 'The handle is invalid')`.
-- **Tested:** Smode Compose 15.5 on Windows 11, English interface, one machine, Smode on the main display.
+- **Tested:** Smode 15.5 on Windows 11, English interface, one machine, Smode on the main display.
   Other interface languages, other UI scales and Smode on a secondary display are not verified.
 - The Viewport title (which also shows an element name) is ignored on purpose; the detection relies on the shape
   of the panel title, so a future Smode interface change could break it.

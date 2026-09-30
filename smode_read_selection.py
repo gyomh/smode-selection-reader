@@ -1,4 +1,4 @@
-# Smode Compose - read the currently selected element from inside a Script.
+# Smode - read the currently selected element from inside a Script.
 #
 # Paste this block at the top of your own Smode script (after your Oil parameter declarations).
 # It needs read_selection.ps1 installed in:  <Documents>\Smode Files\Tools\read_selection.ps1

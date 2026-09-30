@@ -1,4 +1,4 @@
-# Reads the name of the element selected in Smode Compose, from the Parameters panel (UI Automation, read-only).
+# Reads the name of the element selected in Smode, from the Parameters panel (UI Automation, read-only).
 #
 # Usage rule: keep ONE Parameters panel visible and NOT locked.
 # The script does not check the lock state; it fails explicitly when the panel is missing or ambiguous
