@@ -82,7 +82,16 @@ donc pas fiable de le lire dans l'interface ; retrouvez le layer par son nom et 
   sélection. Le bouton Execute du panneau Paramètres du script, lui, la change (il faut sélectionner le script
   pour l'afficher), et vous liriez alors le nom du script lui-même.
 - **Nom, pas chemin.** Deux layers de même nom ne peuvent pas être distingués : gérez ce cas dans votre script.
-- **Vitesse :** quelques secondes par appel (environ 3 à 4 s ici), car tout l'arbre de l'interface est parcouru.
+- **Vitesse :** environ 1 s par appel une fois « chaud ». L'outil mémorise la position du titre du panneau à
+  l'écran (`%LOCALAPPDATA%\SmodeSelection\panel_pos.json`) et le relit directement ; le premier appel, ou un appel
+  après un changement de disposition, parcourt tout l'arbre de l'interface et prend environ 4 s (davantage sur une
+  très grande disposition), puis met le cache à jour. Supprimez ce fichier pour forcer un parcours complet.
+- **Ne faites pas attendre Smode le résultat.** Dans certains cas, si le Script Smode se bloque (par exemple un
+  `join()` sur le fil qui lance l'outil), Smode ne répond plus à UI Automation et l'outil renvoie `ui_not_readable`
+  (« 0 elements »). Cela fonctionnait pourtant dans d'autres scripts : la cause n'est pas entièrement comprise. Le
+  plus sûr est de lancer un fil et de rendre la main tout de suite ; le fil lit la sélection, puis demande à un pont
+  HTTP local (un Script « At Every Update », par exemple [smode-mcp](https://github.com/gyomh/smode-mcp)) d'exécuter
+  la partie Oil sur le fil principal. `scripts/OrderBlockInTimeline_GYOMH.py` est un exemple complet de ce motif.
 - **Nécessite PowerShell 5.1 ou plus récent.** Le script doit être lancé avec `stdin=DEVNULL`
   depuis Smode (déjà fait dans `readSelection()`), sinon `subprocess` échoue avec
   `OSError(9, 'The handle is invalid')`.
@@ -91,6 +100,20 @@ donc pas fiable de le lire dans l'interface ; retrouvez le layer par son nom et 
   sont pas vérifiés.
 - Le titre du Viewport (qui affiche aussi un nom d'élément) est volontairement ignoré ; la détection s'appuie sur
   la forme du titre du panneau, donc une évolution future de l'interface de Smode pourrait la casser.
+
+## Exemples (`scripts/`)
+
+Deux scripts de la communauté adaptés pour agir sur l'élément sélectionné au lieu d'un glisser-déposer. Chacun garde
+l'en-tête de son auteur d'origine, avec une courte mention « Modified by ». Tout le mérite du travail d'origine leur
+revient.
+
+| Fichier | Auteur d'origine | Ce que fait la variante |
+|---|---|---|
+| [`Auto-Video-Loop_v4.0_GYOMH.py`](scripts/Auto-Video-Loop_v4.0_GYOMH.py) | Vincent Le Moigne | Sélectionnez une vidéo, lancez le script : la boucle sans coupure est créée. Le code de la boucle n'est pas modifié. |
+| [`OrderBlockInTimeline_GYOMH.py`](scripts/OrderBlockInTimeline_GYOMH.py) | Basile Rouault | Sélectionnez une scène ou une compo (son layer, pas sa timeline : toutes s'appellent « Main Timeline »), lancez le script : les clips s'enchaînent dans l'ordre des layers. |
+
+Les deux nécessitent `read_selection.ps1` installé comme décrit plus haut. Le script Order Block a aussi besoin d'un
+pont HTTP local (voir la remarque ci-dessus) pour appliquer le résultat.
 
 ## Licence
 
